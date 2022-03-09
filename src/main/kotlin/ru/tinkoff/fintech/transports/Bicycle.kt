@@ -3,7 +3,7 @@ package ru.tinkoff.fintech.transports
 import ru.tinkoff.fintech.Order
 import ru.tinkoff.fintech.exceptions.NotEnergyException
 
-class Bicycle(number: String) : AbstractTransport(number, SPEED, MAX_WEIGHT) {
+class Bicycle(number: String = "23") : AbstractTransport(number, SPEED, MAX_WEIGHT) {
     companion object {
         const val SPEED = 15
         const val MAX_WEIGHT = 15

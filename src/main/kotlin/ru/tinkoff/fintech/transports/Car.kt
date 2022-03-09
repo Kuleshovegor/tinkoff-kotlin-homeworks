@@ -3,7 +3,7 @@ package ru.tinkoff.fintech.transports
 import ru.tinkoff.fintech.Order
 import ru.tinkoff.fintech.exceptions.NotFuelException
 
-class Car(number: String) : AbstractTransport(number, SPEED, MAX_WEIGHT) {
+class Car(number: String = "A123AA") : AbstractTransport(number, SPEED, MAX_WEIGHT) {
     companion object {
         const val SPEED = 60
         const val MAX_WEIGHT = 100

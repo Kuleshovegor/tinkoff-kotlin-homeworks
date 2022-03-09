@@ -10,10 +10,12 @@ class DeliveryCompany(private val transports: List<Transport>) {
     private val orders = ArrayDeque<Order>()
     private var orderId = 0
     private val maxOrderWeight = transports.maxByOrNull { it.maxWeight }?.maxWeight ?: 0
-    private var amount = 0
+    private var _amount = 0
+    val amount
+        get() = _amount
 
     fun addOrder(price: Int, weight: Int, address: String) {
-        check(weight >= 0) { "Incorrect weight of order: $weight" }
+        check(weight > 0) { "Incorrect weight of order: $weight" }
         check(price >= 0) { "Incorrect price of order: $price" }
 
         if (weight > maxOrderWeight) {
@@ -64,7 +66,7 @@ class DeliveryCompany(private val transports: List<Transport>) {
             }
         }
 
-        transports.forEach { amount += it.getAmount() }
-        println("All orders has been delivered. Current amount: $amount")
+        transports.forEach { _amount += it.getAmount() }
+        println("All orders has been delivered. Current amount: $_amount")
     }
 }
