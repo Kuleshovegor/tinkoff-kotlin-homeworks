@@ -37,7 +37,7 @@ class Bicycle(number: String = "23") : AbstractTransport(number, SPEED, MAX_WEIG
             orders.removeFirst()
             currentAmount += order.price
             currentGoodsWeight -= order.weight
-            driverEnergy -= order.weight
+            driverEnergy -= calculateEnergy(order.weight)
 
             println("$this delivered order ${order.id} to ${order.address}")
         }
@@ -48,6 +48,10 @@ class Bicycle(number: String = "23") : AbstractTransport(number, SPEED, MAX_WEIG
             throw NotEnergyException("Need more energy, current energy: $driverEnergy.")
         }
 
+    }
+
+    fun calculateEnergy(weight: Int): Int {
+        return weight * 2
     }
 
     fun rest() {

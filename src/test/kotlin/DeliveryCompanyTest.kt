@@ -15,6 +15,8 @@ class DeliveryCompanyTest {
     }
     private val bicycle1 = spyk<Bicycle> {
         every { getAmount() } returns 10
+        every { calculateEnergy(5) } returns 12
+        every { calculateEnergy(50) } returns -3
     }
     private val bicycle2 = spyk<Bicycle> {
         every { getAmount() } returns -15
@@ -59,6 +61,7 @@ class DeliveryCompanyTest {
         deliveryCompany.deliveryAllOrders()
         verify(exactly = 1) { bicycle1.deliverToClients() }
         verify(exactly = 1) { bicycle1.getAmount() }
+        verify(exactly = 1) { bicycle1.calculateEnergy(5) }
         Assertions.assertEquals(10, deliveryCompany.amount)
     }
 
